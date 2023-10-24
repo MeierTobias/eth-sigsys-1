@@ -1,0 +1,5 @@
+# ignore vs-code settings
+.vscode/
+
+# ignore the latex build
+build/
