@@ -91,3 +91,112 @@ Das zugehörige Ausgangssignal lässt sich in diesem Fall schreiben als
     y(t)=(x*h)(t)=\int_{-\infty}^\infty h(\tau)e^{s(t-\tau)}d\tau=e^{st}\underbrace{\int_{-\infty}^\infty h(\tau)e^{-s\tau}d\tau}_{=:H(s)}
 \end{equation*}
 wobei $H(s)$ die Laplacetransformierte von $h(t)$ genannt wird.
+
+\bigskip
+
+\textbf{Sinusförmiges Eingangssignal}
+\begin{equation*}
+    x(t)=\cos(2\pi f_0t+\varphi_0)=\frac{1}{2}e^{2\pi if_0t}e^{i\varphi_0}+\frac{1}{2}e^{-2\pi if_0t}e^{-i\varphi_0}
+\end{equation*}
+Ausgangssignal:
+\begin{equation*}
+    y(t)=\frac12\hat{h}(f_0)e^{2\pi if_0t}e^{i\varphi_0}+\frac12\hat{h}(-f_0)e^{-2\pi if_0t}e^{-i\varphi_0}
+\end{equation*}
+Für $h(t)\in\mathbb{R}$ gilt $\hat{h}(f)=\hat{h}^*(-f)$ und somit
+\begin{equation*}
+    y(t) = |\hat{h}(f_0)|\cos(2\pi f_0t+\varphi_0+\arg\hat{h}(f_0))
+\end{equation*}
+$|\hat{h}(f)|$ gibt die Änderung der Amplitude und $arg(\hat{h}(f))$ die Änderung der Phase gegenüber
+dem Eingangssignal an.
+
+\subsection{Die Fouriertransformation}
+Definition:
+\begin{equation*}
+    \hat{x}(f):=(\mathcal{F}x)(f):=\int_{-\infty}^\infty x(t)e^{-2\pi ift}dt
+\end{equation*}
+Rücktransformation
+\begin{equation*}
+    x(t):=(\mathcal{F}^{-1}\hat{x})(t):=\int_{-\infty}^\infty\hat{x}(f)e^{2\pi ift}df
+\end{equation*}
+
+\smallskip
+
+\textbf{Riemann-Lebesgue Lemma}
+
+Es sei $x$ ein absolut integrierbares Signal, d.h. $x \in L^1$. Dann ist $(\mathcal{F}x)(f)=\hat{x}(f)$ stetig und es gilt $\lim_{|f|\to\infty}(\mathcal{F}x)(f)=0$.
+
+\subsubsection{Fouriertransformation verallgemeinerter Funktionen}
+oder Funktionen die weder in $L^1$ noch in $L^2$ sind (z.B. $x(t)=1$ oder $x(t)=e^{i2\pi at}$).
+\\
+\textbf{Plancherelsche Identität}
+Es sei $x,y \in L^2$
+\begin{align*}
+    \int_{-\infty}^\infty x(t)y^*(t)dt&=\int_{-\infty}^\infty\hat{x}(f)\hat{y}^*(f)df \\
+    \langle x,y\rangle &= \langle\hat{x},\hat{y}\rangle
+\end{align*}
+Diese Gleichung dient als Grundlage zur Erweiterung des bisherigen Testfunktionenraums $\mathcal{D}$ auf den linearen Raum $\mathcal{S}$ aller beliebig oft differenzierbaren Funktionen, die gemeinsam mit jeder Ableitung für $|u| \rightarrow \infty$ stärker als jede Potenz von $1/|u|$ gegen Null gehen. Der resultierende Testfunktionenraum, genannt $\mathcal{S}$, enthält alle bisher betrachteten Testfunktionen und hat die Eigenschaft, dass für jede Funktion $\varphi \in \mathcal{S}$ auch $\hat{\varphi} = \mathcal{F}\varphi \in \mathcal{S}$. Ein Funktional auf $\mathcal{S}$ wird als temperierte verallgemeinerte Funktion bezeichnet.
+Somit kann gezeigt werden, dass gilt:
+\begin{align*}
+    \ell_x(\hat{\varphi})&=\ell_{\hat{x}}(\varphi) \\
+    \ell_x(\mathcal{F}\varphi)&=\ell_{\mathcal{F}x}(\ell) \\
+    \ell(\mathcal{F}\varphi)&=:\mathcal{F}\ell(\varphi)
+\end{align*}
+\begin{equation*}
+    \mathcal{F}\ell_x(\varphi):=\ell_x(\mathcal{F}\varphi)=\ell_{\mathcal{F}x}(\varphi)
+\end{equation*}
+Folgende Eigenschaften gelten auch für $\varphi \in \mathcal{S}$:
+\begin{align*}
+    &\text{Additivität}&& (\ell+\widetilde{\ell})(\varphi):=\ell(\varphi)+\widetilde{\ell}(\varphi)  \\
+    &\text{Homogenität}&& (\alpha\ell)(\varphi):=\alpha\ell(\varphi) \\
+    &\text{Zusammensetzung}&& (\ell\circ g)(\varphi):=\frac{1}{|a|}\ell(\psi), \\
+    & &&\psi(t)=\varphi\!\left(\frac{t-b}{a}\right),\quad g(t)=at+b  \\
+    &\text{Multiplikation}&& (\psi\ell)(\varphi):=\ell(\psi\varphi)
+\end{align*}    
+wobei für die Multiplikation noch die Einschränkung hinzukommt, dass $\phi(t)$ für $|t| \rightarrow \infty$ nicht allzu stark wachsen darf, damit auch $\psi(t)\varphi(t) \in \mathcal{S} $. 
+Des weiteren bleibt für die Differentiation gültig:
+\begin{align*}
+    &\text{Ableitung}&& D\ell(\varphi)=\ell'(\varphi):=-\ell(\varphi') \\
+    &\text{Additivität}&& (\ell+\tilde{\ell})'(\varphi):=\ell'(\varphi)+\widetilde{\ell}'(\varphi) \\
+    &\text{Homogenität}&& (\alpha\ell)'(\varphi):=\alpha\ell'(\varphi) \\
+    &\text{Produktregel}&& (\psi\ell)'=\psi'\ell+\psi\ell'
+\end{align*}
+
+\textbf{Vorgehen:}
+
+Auf verallgemeinerte Funktionen $\ell$ anwenden damit auch nicht absolut integrierbare Funktionen verwendet werden können.
+\begin{align*}
+    y&=\mathcal{F}x \\
+    &\downarrow \ell \\
+    \ell_y(\varphi)&=\ell_{\mathcal{F}x}(\varphi)=\ell_x(\mathcal{F}\varphi)
+\end{align*} 
+
+\textbf{Einige Fouriertransformationspaare:}
+\begin{align*}
+    \delta(t) \;&\laplace\; 1 \\
+    sign(t) \;&\laplace\; \frac{1}{\pi if} \\
+    \Sigma(t) \;&\laplace\; \frac{1}{2\pi if}+\frac{1}{2}\delta(f) \\
+    e^{2\pi iat} \;&\laplace\; \delta(f-a) \\
+    sin(2\pi f_0t) \;&\laplace\; \frac{i}{2}\left(\delta(f+f_0)-\delta(f-f_0)\right) \\
+    cos(2\pi f_0t) \;&\laplace\; \frac{1}{2}\left(\delta(f+f_0)+\delta(f-f_0)\right) \\
+    \sum_{k=-\infty}^\infty c_ke^{2\pi ikt/T} \;&\laplace\; \sum_{k=-\infty}^\infty c_k\delta\left(f-\frac kT\right)
+\end{align*}
+Es folgen weitere Beziehungen, die für verallgemeinerte Funktionen ihre Gültigkeit bewahren:
+\begin{align*}
+    (\mathcal{F}^2x)(f) &= x(-f) \\
+    \left((\mathcal{F}^{-1})^2\widehat{x}\right)(t) &= \hat(-t) \\
+    x(t-t_{0}) \;&\laplace\; e^{-2\pi ift_0}\hat{x}(f) \\
+    x(at+b) \;&\laplace\; \frac{1}{|a|}\int_{-\infty}^{\infty}x(t')e^{-2\pi if(t'-b)/a}dt'\\
+    &=\frac1{|a|}e^{i2\pi fb/a}\hat{x}(f/a) \\
+    e^{2\pi if_{0}t}x(t) \;&\laplace\; \hat{x}(f-f_0)
+\end{align*}
+
+\textbf{Die Fouriertransformation als Rotation in der Zeit-Frequenz-Ebene:}
+\begin{center}
+    \includegraphics[width=0.6\linewidth]{img/FT_Rotation.png}
+\end{center}
+\begin{align*}
+    x(t) \;&\laplace\; \hat{x}(f) \\
+    \hat{x}(t) \;&\laplace\; x(-f) \\
+    x(-t) \;&\laplace\; \hat{x}(-f) \\
+    \hat{x}(-t)\;&\laplace\; x(f)
+\end{align*}
