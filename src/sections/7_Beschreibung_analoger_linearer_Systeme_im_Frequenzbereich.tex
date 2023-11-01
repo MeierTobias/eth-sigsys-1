@@ -1,1 +1,93 @@
 \section{Analoge lineare Systeme im Frequenzbereich}
+\subsection{Eigenfunktionen}
+
+\begin{center}
+    \begin{tikzpicture}[auto, node distance=2cm,>=latex']
+        \node [input, name=rinput] (rinput) {};
+        \node [block, right of=rinput] (h1) {$H$};
+        \node [output, right of=h1, node distance=2cm] (output) {};
+        \draw [->] (rinput) -- node{$x(t)$} (h1);
+        \draw [->] (h1) -- node [name=y] {$y(t)$}(output);
+    \end{tikzpicture}
+\end{center}
+
+Die Funktionen $e^{2\pi{}ift}$ sind Eigenfunktionen des Systems H, die zugehörigen Eigenwerte sind $\hat{h}(f)$. Der Frequenzgang des LTI-Systems ist gleich der Fouriertransformation $\hat{h}(f)$ der Impulsantwort $h(t)$.
+
+\begin{align*}
+    Hx&=\lambda{}x \\
+    He^{2\pi{}if_0t}&=\hat{h}(f_0)e^{2\pi{}if_0t}
+\end{align*}
+
+\textbf{Analogie zu Eigenvektoren und Eigenwerten von Matrizen.}
+Es sei $H \in \mathbb{C}^{n\times{}n}$ eine Matrix mit der nachfolgenden Eigenwertzerlegung.
+\begin{equation*}
+    H=U\Sigma{}V^H
+\end{equation*}    
+Wenn H normal ist ($HH^H=H^HH$):
+\begin{equation*}
+    H=U\Sigma{}U^H=\sum_{i=1}^{n}u_i\lambda_iu_i^H=\color{section}{\sum_{i=1}^{n}\lambda_iu_iu_i^H}\\
+\end{equation*} 
+Dabei ist
+\begin{equation*}
+    UU^H = U^HU=I_n \Leftrightarrow \langle{}u_i,u_j\rangle{}=
+    \begin{cases}
+        1,&i=j\\
+        0,&\text{sonst.}
+    \end{cases}
+\end{equation*}
+Wird die Matrix mit einem Eigenvektor "angeregt", so erhalten wir
+\begin{align*}
+    Hu_\ell&={\color{section}{\left(\sum_{i=1}^n\lambda_iu_iu_i^H\right)}}u_\ell=\sum_{i=1}^n\lambda_iu_i\underbrace{(u_i^Hu_\ell)}_{=\delta_{i-\ell}}\\
+    Hu_\ell&=\lambda_\ell{}u_\ell
+\end{align*}
+
+Wenn wir den Vektor $x$ als Linearkombination der Basisvektoren $u_i$ schreiben 
+\begin{equation*}
+    x=\sum_{i=1}^{n}c_iu_i, \text{mit Koeffizienten} c_i=\langle{}x,u_i\rangle
+\end{equation*}
+Dann erhält man für das Ausgangssignal
+\begin{align*}
+    Hx& ={\color{section}{\left(\sum_{i=1}^n\lambda_iu_iu_i^H\right)}} \sum_{j=1}^nc_ju_j  \\
+    &=\sum_{i=1}^n\sum_{j=1}^n\lambda_ic_ju_i\underbrace{u_i^Hu_j}_{=\delta_{i-j}} \\
+    &=\sum_{i=1}^n\lambda_ic_iu_i
+\end{align*}
+Diese Darstellung entspricht der zuvor abgeleiteten Beziehung für zeitkontinuierliche Systeme
+\begin{equation*}
+    (Hx)(t)=\int_{-\infty}^\infty\underbrace{\hat{h}(f)}_{\lambda_i}\underbrace{\hat{x}(f)}_{c_i=\langle{}x,u_i\rangle}\underbrace{e^{2\pi ift}}_{u_i}df
+\end{equation*}
+
+\subsubsection{Kaskadierung}
+\begin{center}
+    \begin{tikzpicture}[auto, node distance=2cm,>=latex']
+        \node [input, name=rinput] (rinput) {};
+        \node [block, right of=rinput] (h1) {$H_1$};
+        \node [block, right of=h1] (h2) {$H_2$};
+        \node [output, right of=h2, node distance=2cm] (output) {};
+        \draw [->] (rinput) -- node{$x(t)$} (h1);
+        \draw [->] (h1) -- node{$y_1(t)$} (h2);
+        \draw [->] (h2) -- node [name=y] {$y(t)$}(output);
+    \end{tikzpicture}
+\end{center}
+\begin{align*}
+    h(t)&=(h_1*h_2)(t)\\
+    \hat{h}&=\hat{h_1}\hat{h_2}
+\end{align*}
+
+\subsubsection{Weitere spezielle Eingangssignale}
+\textbf{Allgemeine Schwingungen:}
+\begin{align*}
+    x(t)&=e^{st} \\
+    \intertext{mit}
+    s&=\sigma + i2\pi f_0 \\
+    \Re(s) &= \sigma 
+    \begin{cases}
+        <0, &\text{zeitlich abklingende Einhüllende}\\
+        =0, &\text{zeitlich konstante Einhüllende}\\
+        >0, &\text{zeitlich anklingende Einhüllende}
+    \end{cases}
+\end{align*}
+Das zugehörige Ausgangssignal lässt sich in diesem Fall schreiben als
+\begin{equation*}
+    y(t)=(x*h)(t)=\int_{-\infty}^\infty h(\tau)e^{s(t-\tau)}d\tau=e^{st}\underbrace{\int_{-\infty}^\infty h(\tau)e^{-s\tau}d\tau}_{=:H(s)}
+\end{equation*}
+wobei $H(s)$ die Laplacetransformierte von $h(t)$ genannt wird.

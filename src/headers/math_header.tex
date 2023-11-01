@@ -1,5 +1,7 @@
 %Mathematik-Pakete
 \usepackage{amsmath, amstext, amssymb, mathtools, esint, polynom, trfsigns, pgfplots}
+%Spec. version of pgfplots (rel. new version 2023)
+\pgfplotsset{compat=1.18}
 \usepackage{bm}
 \allowdisplaybreaks %Seitenumbruch in align-Umgebung erlauben
 %
@@ -23,3 +25,16 @@
 \providecommand{\diff}{\mathop{} \! \mathrm{d}}
 \DeclareMathOperator{\rot}{rot}
 \DeclareMathOperator{\divg}{div}
+
+% Block-diagram
+% A very nice example can be found here: https://tex.stackexchange.com/questions/175969/block-diagrams-using-tikz
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning,calc}
+\tikzset{
+	block/.style = {draw, fill=white, rectangle, minimum height=3em, minimum width=3em},
+	tmp/.style  = {coordinate}, 
+	sum/.style= {draw, fill=white, circle, node distance=1cm},
+	input/.style = {coordinate},
+	output/.style= {coordinate},
+	pinstyle/.style = {pin edge={to-,thin,black}}
+}
