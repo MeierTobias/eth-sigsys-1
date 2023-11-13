@@ -3,3 +3,6 @@
 
 # ignore the latex build
 build/
+
+# formatter logs (latexindent)
+src/indent.log

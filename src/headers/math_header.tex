@@ -8,18 +8,18 @@
 
 %Definition der Umgebung "example"
 \newenvironment {example}
-				{\begin{itshape} \begin{small}}
-				{\end{small} \end{itshape}}
+{\begin{itshape} \begin{small}}
+			{\end{small} \end{itshape}}
 %				
 %Definition der Umgebung "annotation"		
 \newenvironment {annotation}[1]
-				{\begin{itshape} \begin{small} \textbf{#1} \begin{itemize}}
+{\begin{itshape} \begin{small} \textbf{#1} \begin{itemize}}
 				{\end{itemize} \end{small} \end{itshape}}
 %				
 %Definition der Umgebung "eq"
 \newenvironment {eq}
-				{\begin{equation*}}
-				{\end{equation*}}
+{\begin{equation*}}
+		{\end{equation*}}
 %
 % Don't know what this does
 \providecommand{\diff}{\mathop{} \! \mathrm{d}}
@@ -32,7 +32,7 @@
 \usetikzlibrary{shapes,arrows,positioning,calc}
 \tikzset{
 	block/.style = {draw, fill=white, rectangle, minimum height=3em, minimum width=3em},
-	tmp/.style  = {coordinate}, 
+	tmp/.style  = {coordinate},
 	sum/.style= {draw, fill=white, circle, node distance=1cm},
 	input/.style = {coordinate},
 	output/.style= {coordinate},
