@@ -23,33 +23,33 @@ Es sei $H \in \mathbb{C}^{n\times{}n}$ eine Matrix mit der nachfolgenden Eigenwe
 \begin{equation*}
     H=U\Sigma{}V^H
 \end{equation*}
-Wenn H normal ist ($HH^H=H^HH$):
+Wenn H normal ist ($HH^H=H^H H$):
 \begin{equation*}
-    H=U\Sigma{}U^H=\sum_{i=1}^{n}u_i\lambda_iu_i^H=\color{section}{\sum_{i=1}^{n}\lambda_iu_iu_i^H}\\
+    H=U\Sigma{}U^H=\sum_{i=1}^{n}u_i\lambda_i u_i^H=\color{section}{\sum_{i=1}^{n}\lambda_i u_i u_i^H}\\
 \end{equation*}
 Dabei ist
 \begin{equation*}
-    UU^H = U^HU=I_n \Leftrightarrow \langle{}u_i,u_j\rangle{}=
+    UU^H = U^H U=I_n \Leftrightarrow \langle{}u_i,u_j\rangle{}=
     \begin{cases}
         1, & i=j           \\
         0, & \text{sonst.}
     \end{cases}
 \end{equation*}
-Wird die Matrix mit einem Eigenvektor "angeregt", so erhalten wir
+Wird die Matrix mit einem Eigenvektor "angeregt", so erhalten wir % chktex 18
 \begin{align*}
-    Hu_\ell & ={\color{section}{\left(\sum_{i=1}^n\lambda_iu_iu_i^H\right)}}u_\ell=\sum_{i=1}^n\lambda_iu_i\underbrace{(u_i^Hu_\ell)}_{=\delta_{i-\ell}} \\
+    Hu_\ell & ={\color{section}{\left(\sum_{i=1}^n\lambda_i u_i u_i^H\right)}}u_\ell=\sum_{i=1}^n\lambda_i u_i\underbrace{(u_i^H u_\ell)}_{=\delta_{i-\ell}} \\
     Hu_\ell & =\lambda_\ell{}u_\ell
 \end{align*}
 
 Wenn wir den Vektor $x$ als Linearkombination der Basisvektoren $u_i$ schreiben
 \begin{equation*}
-    x=\sum_{i=1}^{n}c_iu_i, \text{mit Koeffizienten} c_i=\langle{}x,u_i\rangle
+    x=\sum_{i=1}^{n}c_i u_i, \text{mit Koeffizienten} c_i=\langle{}x,u_i\rangle
 \end{equation*}
 Dann erhält man für das Ausgangssignal
 \begin{align*}
-    Hx & ={\color{section}{\left(\sum_{i=1}^n\lambda_iu_iu_i^H\right)}} \sum_{j=1}^nc_ju_j \\
-       & =\sum_{i=1}^n\sum_{j=1}^n\lambda_ic_ju_i\underbrace{u_i^Hu_j}_{=\delta_{i-j}}     \\
-       & =\sum_{i=1}^n\lambda_ic_iu_i
+    Hx & ={\color{section}{\left(\sum_{i=1}^n\lambda_i u_i u_i^H\right)}} \sum_{j=1}^n c_j u_j \\
+       & =\sum_{i=1}^n\sum_{j=1}^n\lambda_i c_j u_i\underbrace{u_i^H u_j}_{=\delta_{i-j}}      \\
+       & =\sum_{i=1}^n\lambda_i c_i u_i
 \end{align*}
 Diese Darstellung entspricht der zuvor abgeleiteten Beziehung für zeitkontinuierliche Systeme
 \begin{equation*}
@@ -106,7 +106,7 @@ Für $h(t)\in\mathbb{R}$ gilt $\hat{h}(f)=\hat{h}^*(-f)$ und somit
 \begin{equation*}
     y(t) = |\hat{h}(f_0)|\cos(2\pi f_0t+\varphi_0+\arg\hat{h}(f_0))
 \end{equation*}
-$|\hat{h}(f)|$ gibt die Änderung der Amplitude und $arg(\hat{h}(f))$ die Änderung der Phase gegenüber
+$|\hat{h}(f)|$ gibt die Änderung der Amplitude und $\arg(\hat{h}(f))$ die Änderung der Phase gegenüber
 dem Eingangssignal an.
 
 \subsection{Die Fouriertransformation}
@@ -172,22 +172,22 @@ Auf verallgemeinerte Funktionen $\ell$ anwenden damit auch nicht absolut integri
 
 \textbf{Einige Fouriertransformationspaare:}
 \begin{align*}
-    \delta(t) \;                                 & \laplace\; 1                                                        \\
-    sign(t) \;                                   & \laplace\; \frac{1}{\pi if}                                         \\
-    \Sigma(t) \;                                 & \laplace\; \frac{1}{2\pi if}+\frac{1}{2}\delta(f)                   \\
-    e^{2\pi iat} \;                              & \laplace\; \delta(f-a)                                              \\
-    sin(2\pi f_0t) \;                            & \laplace\; \frac{i}{2}\left(\delta(f+f_0)-\delta(f-f_0)\right)      \\
-    cos(2\pi f_0t) \;                            & \laplace\; \frac{1}{2}\left(\delta(f+f_0)+\delta(f-f_0)\right)      \\
-    \sum_{k=-\infty}^\infty c_ke^{2\pi ikt/T} \; & \laplace\; \sum_{k=-\infty}^\infty c_k\delta\left(f-\frac kT\right)
+    \delta(t) \;                                  & \laplace\; 1                                                        \\
+    sign(t) \;                                    & \laplace\; \frac{1}{\pi if}                                         \\
+    \Sigma(t) \;                                  & \laplace\; \frac{1}{2\pi if}+\frac{1}{2}\delta(f)                   \\
+    e^{2\pi iat} \;                               & \laplace\; \delta(f-a)                                              \\
+    \sin(2\pi f_0t) \;                            & \laplace\; \frac{i}{2}\left(\delta(f+f_0)-\delta(f-f_0)\right)      \\
+    \cos(2\pi f_0t) \;                            & \laplace\; \frac{1}{2}\left(\delta(f+f_0)+\delta(f-f_0)\right)      \\
+    \sum_{k=-\infty}^\infty c_k e^{2\pi ikt/T} \; & \laplace\; \sum_{k=-\infty}^\infty c_k\delta\left(f-\frac kT\right)
 \end{align*}
 Es folgen weitere Beziehungen, die für verallgemeinerte Funktionen ihre Gültigkeit bewahren:
 \begin{align*}
-    (\mathcal{F}^2x)(f)                             & = x(-f)                                                                     \\
-    \left((\mathcal{F}^{-1})^2\widehat{x}\right)(t) & = \hat(-t)                                                                  \\
-    x(t-t_{0}) \;                                   & \laplace\; e^{-2\pi ift_0}\hat{x}(f)                                        \\
-    x(at+b) \;                                      & \laplace\; \frac{1}{|a|}\int_{-\infty}^{\infty}x(t')e^{-2\pi if(t'-b)/a}dt' \\
-                                                    & =\frac1{|a|}e^{i2\pi fb/a}\hat{x}(f/a)                                      \\
-    e^{2\pi if_{0}t}x(t) \;                         & \laplace\; \hat{x}(f-f_0)
+    (\mathcal{F}^2x)(f)                               & = x(-f)                                                                     \\
+    \left({(\mathcal{F}^{-1})}^2\widehat{x}\right)(t) & = \hat(-t)                                                                  \\
+    x(t-t_{0}) \;                                     & \laplace\; e^{-2\pi ift_0}\hat{x}(f)                                        \\
+    x(at+b) \;                                        & \laplace\; \frac{1}{|a|}\int_{-\infty}^{\infty}x(t')e^{-2\pi if(t'-b)/a}dt' \\
+                                                      & =\frac1{|a|}e^{i2\pi fb/a}\hat{x}(f/a)                                      \\
+    e^{2\pi if_{0}t}x(t) \;                           & \laplace\; \hat{x}(f-f_0)
 \end{align*}
 
 \textbf{Die Fouriertransformation als Rotation in der Zeit-Frequenz-Ebene:}
