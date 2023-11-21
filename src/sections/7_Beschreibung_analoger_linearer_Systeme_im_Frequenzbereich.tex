@@ -220,5 +220,47 @@ mit dem Ausgangssignal
 \begin{equation*}
     y(t)=h(t)*x(t)=\sum_{k=-\infty}^{\infty}\hat{h}\Biggl(\frac{k}{T}\Biggr)c_k e^{2\pi it\frac{k}{T}}
 \end{equation*}
+Beweis der Periodizität:
+\begin{equation*}
+    y(t-T)=\cdots=y(t)
+\end{equation*}
 
 \textbf{Poissonsche Summenformel}
+\begin{equation*}
+    \sum_{k=-\infty}^{\infty}h(t-kT)=\frac{1}{T}\sum_{k=-\infty}^{\infty}\hat{h}\left(\frac{k}{T}\right)e^{2\pi ikt/T}
+\end{equation*}
+Daraus kann abgeleitet werden, dass die Fouriertransformierte eines Impulskammes wieder ein Impulskamm ist.
+\begin{equation*}
+    \sum_{k=-\infty}^{\infty}\delta(t-kT) \: \laplace \: \frac{1}{T}\sum_{k=-\infty}^{\infty}\delta\left(f-\frac{k}{T}\right)
+\end{equation*}
+
+\subsection{Anw.\ der Fouriertransformation auf LTI-Systeme}
+
+\subsubsection{Idealisierter Tiefpassfilter}
+
+\subsubsection{Bandbegrenzte Signale}
+Dei Bandbreite des Signals $x$ ist das kleinste $W$, so dass
+\begin{equation*}
+    (x*h_{TP,W})(t)=x(t)
+\end{equation*}
+mit
+\begin{equation*}
+    \hat{h}_{TP,W}(f)=
+    \begin{cases}
+        1, & |f| \leq W \\
+        0, & sonst.
+    \end{cases}
+\end{equation*}
+
+\textbf{Bernstein-Ungleichung}
+Die Bernsteinsche Ungleichung gibt der Intuition Ausdruck, dass Signale mit kleiner
+Bandbreite im Zeitbereich nur langsame Änderungen aufweisen können.
+
+Wenn $x(t)$ in der Form
+\begin{equation*}
+    x(t)=\int_{-W}^{W}g(f)e^{2\pi ift}df,\quad\text{für alle}t\in\mathbb{R}
+\end{equation*}
+dargestellt werden kann, für eine integrierbare Funktion $g$, d.h. $g \in L^1$, dann gilt
+\begin{equation*}
+    \left|\frac{dx(t)}{dt}\right|\leq4\pi W\sup_{\tau\in\mathbb{R}}|x(\tau)|,\quad\text{für alle}t\in\mathbb{R}.
+\end{equation*}
