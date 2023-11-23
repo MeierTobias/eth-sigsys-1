@@ -237,6 +237,85 @@ Daraus kann abgeleitet werden, dass die Fouriertransformierte eines Impulskammes
 \subsection{Anw.\ der Fouriertransformation auf LTI-Systeme}
 
 \subsubsection{Idealisierter Tiefpassfilter}
+\textbf{Allpass}
+Für ein verzerrungsfreies System gilt: (reine Verstärkung und Phasenverschiebung)
+\begin{equation*}
+    y(t) = kx(t-t_0)
+\end{equation*}
+Die Fouriertransformierte der Impulsantwort zeigt den Amplituden und Phasengang:
+\begin{equation*}
+    \hat{h}(t) = k e^{-2\pi ift_0} = |\hat{h}(f)|e^{i\varphi(f)}
+\end{equation*}
+mit
+\begin{align*}
+    |\hat{h}(f)| & = |k|            \\
+    \varphi(f)   & = -2\pi ft_0     \\
+    h(t)         & = k\delta(t-t_0)
+\end{align*}
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+                width=0.6\linewidth,
+                unit vector ratio={1 1},
+                axis x line=left,
+                axis y line=middle,
+                xmin=-2,
+                xmax=2,
+                ymin=0,
+                ymax=2,
+                xlabel={$f$},
+                ylabel={$|\hat{h}(f)|$},
+                xtick=\empty,
+                ytick={0},
+                mark=none,
+            ]
+            \addplot [blue]
+            coordinates {
+                    (\pgfkeysvalueof{/pgfplots/xmin},1)
+                    (\pgfkeysvalueof{/pgfplots/xmax},1)
+                };
+        \end{axis}
+    \end{tikzpicture}
+    \begin{tikzpicture}
+        \begin{axis}[
+                width=0.6\linewidth,
+                unit vector ratio={1 1},
+                axis x line=middle,
+                axis y line=middle,
+                xmin=-2,
+                xmax=2,
+                ymin=-2,
+                ymax=2,
+                xlabel={$f$},
+                ylabel={$\varphi (f)$},
+                xtick=\empty,
+                ytick={0},
+                mark=none,
+            ]
+            \addplot [blue]
+            coordinates {
+                    (\pgfkeysvalueof{/pgfplots/xmin},\pgfkeysvalueof{/pgfplots/xmax})
+                    (\pgfkeysvalueof{/pgfplots/xmax},\pgfkeysvalueof{/pgfplots/xmin})
+                };
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+Eine scharfe Bandbegrenzung verursacht nachfolgende Verzerrung:
+
+\includegraphics*[width=0.5\linewidth]{../img/7_TP_f.png}
+\begin{align*}
+    |\hat{h}(f)| &= 
+    \begin{cases}
+        1, &|f|\leq f_g \\
+        0, &\text{sonst}
+    \end{cases} \\
+    \varphi(f) &= -2\pi ft_0
+\end{align*}
+
+\includegraphics*[width=0.5\linewidth]{../img/7_TP_t.png}
+\begin{equation*}
+    h(t) = \frac{\sin(2\pi f_g(t-t_0))}{\pi (t-t_0)}
+\end{equation*}
 
 \subsubsection{Bandbegrenzte Signale}
 Dei Bandbreite des Signals $x$ ist das kleinste $W$, so dass
