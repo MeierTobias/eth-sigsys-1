@@ -25,7 +25,7 @@ Es sei $H \in \mathbb{C}^{n\times{}n}$ eine Matrix mit der nachfolgenden Eigenwe
 \end{equation*}
 Wenn H normal ist ($HH^H=H^H H$):
 \begin{equation*}
-    H=U\Sigma{}U^H=\sum_{i=1}^{n}u_i\lambda_i u_i^H=\color{section}{\sum_{i=1}^{n}\lambda_i u_i u_i^H}\\
+    H=U\Sigma{}U^H=\sum_{i=1}^{n}u_i\lambda_i u_i^H=\color{sectionColor}{\sum_{i=1}^{n}\lambda_i u_i u_i^H}\\
 \end{equation*}
 Dabei ist
 \begin{equation*}
@@ -37,7 +37,7 @@ Dabei ist
 \end{equation*}
 Wird die Matrix mit einem Eigenvektor "angeregt", so erhalten wir % chktex 18
 \begin{align*}
-    Hu_\ell & ={\color{section}{\left(\sum_{i=1}^n\lambda_i u_i u_i^H\right)}}u_\ell=\sum_{i=1}^n\lambda_i u_i\underbrace{(u_i^H u_\ell)}_{=\delta_{i-\ell}} \\
+    Hu_\ell & ={\color{sectionColor}{\left(\sum_{i=1}^n\lambda_i u_i u_i^H\right)}}u_\ell=\sum_{i=1}^n\lambda_i u_i\underbrace{(u_i^H u_\ell)}_{=\delta_{i-\ell}} \\
     Hu_\ell & =\lambda_\ell{}u_\ell
 \end{align*}
 
@@ -47,8 +47,8 @@ Wenn wir den Vektor $x$ als Linearkombination der Basisvektoren $u_i$ schreiben
 \end{equation*}
 Dann erhält man für das Ausgangssignal
 \begin{align*}
-    Hx & ={\color{section}{\left(\sum_{i=1}^n\lambda_i u_i u_i^H\right)}} \sum_{j=1}^n c_j u_j \\
-       & =\sum_{i=1}^n\sum_{j=1}^n\lambda_i c_j u_i\underbrace{u_i^H u_j}_{=\delta_{i-j}}      \\
+    Hx & ={\color{sectionColor}{\left(\sum_{i=1}^n\lambda_i u_i u_i^H\right)}} \sum_{j=1}^n c_j u_j \\
+       & =\sum_{i=1}^n\sum_{j=1}^n\lambda_i c_j u_i\underbrace{u_i^H u_j}_{=\delta_{i-j}}           \\
        & =\sum_{i=1}^n\lambda_i c_i u_i
 \end{align*}
 Diese Darstellung entspricht der zuvor abgeleiteten Beziehung für zeitkontinuierliche Systeme
@@ -192,7 +192,7 @@ Es folgen weitere Beziehungen, die für verallgemeinerte Funktionen ihre Gültig
 
 \textbf{Die Fouriertransformation als Rotation in der Zeit-Frequenz-Ebene:}
 \begin{center}
-    \includegraphics[width=0.6\linewidth]{img/FT_Rotation.png}
+    \includegraphics[width=0.6\linewidth]{img/7.2.1_FT_Rotation.png}
 \end{center}
 \begin{align*}
     x(t) \;       & \laplace\; \hat{x}(f)  \\
@@ -307,7 +307,7 @@ Eine scharfe Bandbegrenzung verursacht nachfolgende Verzerrung:
 
 \begin{tabular}[c]{@{}p{0.5\linewidth}p{0.4\linewidth}@{}}
     \begin{minipage}[top]{\linewidth}
-        \includegraphics*[width=\linewidth]{../img/7_TP_f.png}
+        \includegraphics*[width=\linewidth]{img/7.3.1_TP_f.png}
     \end{minipage}
      &
     \begin{minipage}[top]{\linewidth}
@@ -324,7 +324,7 @@ Eine scharfe Bandbegrenzung verursacht nachfolgende Verzerrung:
     \end{minipage}
     \\
     \begin{minipage}[top]{\linewidth}
-        \includegraphics*[width=\linewidth]{../img/7_TP_t.png}
+        \includegraphics*[width=\linewidth]{../img/7.3.1_TP_t.png}
     \end{minipage}
      &
     \begin{minipage}[top]{\linewidth}
@@ -333,6 +333,56 @@ Eine scharfe Bandbegrenzung verursacht nachfolgende Verzerrung:
         \end{equation*}
     \end{minipage}
 \end{tabular}
+
+Dieses System ist nicht kausal. Ferner ist $h(t)$ nicht absolut integrierbar, denn wenn $h(t)$ absolut integrierbar wäre, dann wäre $\hat{h}(f)$ stetig (siehe Riemann-Lebesgue Lemma). Unstetigkeiten im Frequenzgang ergeben daher immer eine Impulsantwort,
+die nicht absolut integrierbar ist.
+
+Die Sprungantwort ist:
+\begin{equation*}
+    a(t) = \int_{-\infty}^{\infty}\sigma(t-\tau)h(\tau)d\tau=\int_{-\infty}^{t}h(\tau)d\tau
+\end{equation*}
+
+\begin{center}
+    \includegraphics*[width=0.9\linewidth]{../img/7.3.1_stepResponse.png}
+\end{center}
+
+\begin{itemize}
+    \item Tangente mit maximaler Steigung $2f_g$ bei $t=t_0$
+    \item Die maximale Steigung ist proportional zur Grenzfrequenz $fg$.
+    \item Ein Tiefpass mit höherer Grenzfrequenz kann einer Signaländerung rascher folgen.
+\end{itemize}
+
+
+Um den idealisierten Tiefpass \textbf{kausal} zu machen, muss $h(t)$ nach rechts verschoben werden und dann für $t < 0$ zu Null gesetzt werden. Die Impulsantwort sieht dann
+folgendermassen aus
+\begin{equation*}
+    h_{kaus}(t)=h_{id}(t-t_1)\sigma(t)
+\end{equation*}
+\begin{center}
+    \includegraphics[width=0.7\linewidth]{../img/7.3.1_TP_kaus_t.png}
+\end{center}
+Mit der Fouriertransformierten
+\begin{equation*}
+    \hat{h}_{kaus}(f) = (e^{-2\pi ift_1}\hat{h}_{id}(f))*\frac{1}{2\pi if}+\frac{1}{2}e^{-2\pi ift_1}\hat{h}_{id}(f)
+\end{equation*}
+\begin{tabular}[c]{@{}p{0.5\linewidth}p{0.45\linewidth}@{}}
+    \begin{minipage}[top]{\linewidth}
+        \includegraphics*[width=\linewidth]{../img/7.3.1_TP_kaus_f.png}
+    \end{minipage}
+     &
+    \begin{minipage}[top]{\linewidth}
+        Es kommt zur Überhöhung im Frequenzgang bei $\pm f_g$.
+    \end{minipage}
+\end{tabular}
+
+Um den idealisierten Tiefpass stabil zu machen, kann wie folgt vorgegangen werden
+\begin{center}
+    \includegraphics*[width=\linewidth]{../img/7.3.1_TP_stab.png}
+\end{center}
+Dabei erhält man Stabilität aus der Tatsache, dass
+\begin{equation*}
+    \left(\hat{h}_{id}*\hat{h}_{ge}\right)(f) \: \laplace \: \sim \frac{1}{t}\frac{1}{t} \Rightarrow h\in L^1
+\end{equation*}
 
 \subsubsection{Bandbegrenzte Signale}
 Dei Bandbreite des Signals $x$ ist das kleinste $W$, so dass
